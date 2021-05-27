@@ -14,20 +14,25 @@ export default function Login(props){
         };
 
         fetch('http://localhost:5000/api/auth/login', requestOptions)
-        .then(res => res.text())
-        .then(
-            (result) => {
-                localStorage.setItem('token', result)
+        .then(res => {
+            if(res.ok){
+                return res.text()
+            }else if(res.status === 401){
+                throw Error("Blogas prisijungimo vardas / slaptažodis")
+            }else{
+                throw Error(res.text())
+            }
+        })
+        .then(res =>{
+            localStorage.setItem('TOKEN', res)
                 props.setAlertVariant('success')
                 props.setAlertHeading("Sveiki sugrįže!")
-            },
-            (error) =>{ 
-                props.setAlertVariant('danger')
-                props.setAlertHeading("Klaida:")
-                props.setAlertMsg(error)
-                console.log(error)
-            }
-        )
+                props.setIsLoggedIn(true)
+        }, err => {
+            props.setAlertVariant('danger')
+            props.setAlertHeading("Klaida:")
+            props.setAlertMsg(err)
+        })
         setShow(false);
         props.setShowAlert(true)
     }

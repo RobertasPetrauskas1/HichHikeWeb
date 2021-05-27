@@ -36,3 +36,32 @@
     transform: rotate(360deg);
   }
 }
+
+.tripItem{
+  background-color: #f2ebe4;
+}
+.profile{
+  background-color: #f2ebe4;
+}
+.form{
+  background-color: #f2ebe4;
+}
+.travelerItem{
+  background-color: #f2ebe4;
+  border-bottom: 1px solid black;
+}
+
+html, #root{
+  background-color: #f5a153;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
